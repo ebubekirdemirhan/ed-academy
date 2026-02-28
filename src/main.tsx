@@ -14,9 +14,12 @@ import { BlogPage } from './routes/BlogPage';
 import { BlogPostPage } from './routes/BlogPostPage';
 import { ContactPage } from './routes/ContactPage';
 
+// Vite injects BASE_URL: '/' in dev, '/ed-academy/' on GitHub Pages
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
