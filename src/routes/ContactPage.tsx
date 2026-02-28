@@ -46,13 +46,21 @@ export function ContactPage() {
     if (CONTACT_FORM_ENDPOINT) {
       setStatus('submitting');
       try {
+        const payload = {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `[ED Academy] ${form.topic}`,
+          Konu: form.topic,
+        };
+
         const response = await fetch(CONTACT_FORM_ENDPOINT, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         });
 
         if (!response.ok) {
