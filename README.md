@@ -40,6 +40,25 @@ npm run build
 npm run preview
 ```
 
+## İletişim Formu E-posta Entegrasyonu
+
+İletişim formu iki modda çalışır:
+
+- **Profesyonel mod (önerilen)**: Form verilerini bir HTTP endpoint'ine POST eder.
+- **Fallback mod**: Eğer endpoint tanımlı değilse, varsayılan e-posta istemcisini açarak\
+  `ebubekirdemirhaniletisim@gmail.com` adresine `mailto:` ile yönlendirir.
+
+### Profesyonel mod için öneri (örnek: Formspree)
+
+1. Form backend servisi seç (örn. Formspree, Getform vb.) ve\
+   `POST` isteği kabul eden bir endpoint oluştur.
+2. GitHub repo ayarlarında `Settings → Secrets and variables → Actions` bölümünde\
+   yeni bir **Repository secret** ekle:
+   - Name: `CONTACT_FORM_ENDPOINT`
+   - Value: oluşturduğun form endpoint URL'si
+3. Workflow zaten bu secret'ı `VITE_CONTACT_ENDPOINT` olarak build'e geçiriyor;\
+   yeni push sonrası yayınlanan sürüm, form verilerini bu endpoint'e POST edecektir.
+
 ## Lisans
 
 MIT
